@@ -1,0 +1,36 @@
+/*
+* PIR sensor tester
+*/
+     
+int ledPin = 13;                
+int inputPin = 2;               
+int pirState = LOW;             
+int a = 0;                    
+     
+void setup() {
+pinMode(ledPin, OUTPUT);      
+pinMode(inputPin, INPUT);     
+     
+Serial.begin(9600);
+}
+     
+void loop(){
+a = digitalRead(inputPin);  
+if (a == HIGH) {            
+digitalWrite(ledPin, 1);  
+if (pirState == LOW) {
+          
+Serial.println("Motion detected!");
+          
+pirState = HIGH;
+}
+} else {
+digitalWrite(ledPin, 0); 
+if (pirState == HIGH){
+          
+Serial.println("No motion in range");
+          
+pirState = LOW;
+    }
+  }
+}
